@@ -40,12 +40,12 @@ end
 local c = {
     normal = { guifg = rps.text },
 
-
     func = { guifg = rps.iris },
     funcBuiltin = { guifg = rps.foam },
     builtin = { guifg = rps.foam },
 
     var = { guifg = rps.subtle },
+    const = { guifg = rps.iris },
     
     import = { guifg = rps.iris },
     importSpecifier = { guifg = rps.iris },
@@ -63,6 +63,7 @@ local c = {
     primStr = { guifg = rps.sun },
     strSpecial = { guifg = rps.rose },
     primGeneric = { guifg = rps.rose },
+    primBoolean = { guifg = rps.rose },
     primNumber = { guifg = rps.rose },
 
     error = { guifg = rps.love }
@@ -78,6 +79,7 @@ function rps.setup_groups()
     rps.hi("Folded", { guibg = rps.overlay, guifg = rps.iris })
     rps.hi("Visual", { guibg = rps.overlay })
     rps.hi("Search", { guibg = rps.overlay })
+    rps.hi("IncSearch", { guibg = rps.overlay })
     rps.hi("LineNr", { guifg = rps.ignored })
     rps.hi("NonText", { guifg = rps.ignored })
     rps.hi("CursorLineNr", { guibg = rps.overlay, guifg = rps.ignored })
@@ -100,6 +102,7 @@ function rps.setup_groups()
 
     -- VimL
     rps.hi("vimLineComment", c.comment)
+    rps.hi("vimComment", c.comment)
     rps.hi("vimCommentTitle", c.comment)
     rps.hi("vimCommentTitleLeader", c.comment)
     rps.hi("vimLineComment", c.comment)
@@ -123,14 +126,17 @@ function rps.setup_groups()
     rps.hi("vimAutoEvent", c.var)
     rps.hi("vimAutoEventList", c.operator)
     rps.hi("vimAutoCmdSpace", c.var)
+    rps.hi("vimAutoCmdOpt", c.var)
     rps.hi("vimAutoCmdSfxList", c.var)
     rps.hi("vimFilter", c.var)
     rps.hi("vimSet", c.builtin)
+    rps.hi("vimSetString", c.primStr)
     rps.hi("vimSetSep", c.operator)
     rps.hi("vimSetEqual", c.operator)
     rps.hi("vimOption", c.var)
     rps.hi("vimFunction", c.func)
     rps.hi("vimFuncName", c.func)
+    rps.hi("vimFunc", c.func)
     rps.hi("vimCmdSep", c.operator)
     rps.hi("vimSep", c.paren)
     rps.hi("vimParenSep", c.paren)
@@ -147,6 +153,7 @@ function rps.setup_groups()
     rps.hi("vimLet", c.builtin)
     rps.hi("vimNumber", c.primNumber)
     rps.hi("vimString", c.primStr)
+    rps.hi("vimStringCont", c.strSpecial)
     rps.hi("vimStringEnd", c.primStr)
     rps.hi("vimContinue", c.strSpecial)
 
@@ -157,6 +164,7 @@ function rps.setup_groups()
     rps.hi("cssAtRule", c.decorator)
     rps.hi("cssFunction", c.funcBuiltin)
     rps.hi("cssFunctionName", c.funcBuiltin)
+    rps.hi("cssStringQ", c.primStr)
     rps.hi("cssStringQQ", c.primStr)
     rps.hi("cssTagName", c.func)
     rps.hi("cssIdentifier", c.func)
@@ -178,28 +186,33 @@ function rps.setup_groups()
     rps.hi("cssPseudoClass", c.decorator)
     rps.hi("cssCommonAttr", c.primGeneric)
     rps.hi("cssBraceError", c.error)
-    rps.hi("cssBorderProp", c.var)
-    rps.hi("cssBoxProp", c.var)
-    rps.hi("cssFlexibleBoxProp", c.var)
-    rps.hi("cssBackgroundProp", c.var)
-    rps.hi("cssPositioningProp", c.var)
-    rps.hi("cssTransitionProp", c.var)
-    rps.hi("cssTextProp", c.var)
-    rps.hi("cssMediaProp", c.var)
-    rps.hi("cssBorderAttr", c.primGeneric)
-    rps.hi("cssBoxAttr", c.primGeneric)
-    rps.hi("cssFlexibleBoxAttr", c.primGeneric)
-    rps.hi("cssPositioningAttr", c.primGeneric)
-    rps.hi("cssTransitionAttr", c.primGeneric)
-    rps.hi("cssUIAttr", c.primGeneric)
-    rps.hi("cssAnimationAttr", c.primGeneric)
-    rps.hi("cssMultiColumnAttr", c.primGeneric)
+    -- local cssPropAttrs = { "Border", "Box", "FlexibleBox",
+    --     "Background", "Positioning", "Transition",
+    --     "UI", "IEUI", "Aural", "MobileText", "KeyFrame",
+    --     "Text", "Media", "MultiColumn", "FontDescriptor",
+    --     "PageMargin", "List", "Animation", "Color",
+    --     "Font", "Interact", "GeneratedContent", "Grid",
+    --     "Transform", "Table", "Hyperlink", "Dimension",
+    --     "Margin", "Padding", "Marquee", "Gradient",
+    --     "Ruby", "PagedMedia", "Speech", "Print", "Render",
+    --     "LineBox", "ContentForPagedMedia", "Page"
+    -- }
+    -- for _, prop in pairs(cssPropAttrs) do
+    --     rps.hi("css" .. prop .. "Prop", c.var)
+    --     rps.hi("css" .. prop .. "Attr", c.primGeneric)
+    -- end
+    rps.hi("cssProp", c.var)
+    rps.hi("cssAttr", c.primGeneric)
     rps.hi("cssValueLength", c.primNumber)
     rps.hi("cssValueNumber", c.primNumber)
+    rps.hi("cssValueInteger", c.primNumber)
+    rps.hi("cssValueAngle", c.primNumber)
+    rps.hi("cssValueFrequency", c.primNumber)
     rps.hi("cssValueTime", c.primNumber)
 
 
     -- Lua
+    rps.hi("luaSemiCol", c.paren)
     rps.hi("luaSymbolOperator", c.operator)
     rps.hi("luaOperator", c.operator)
     rps.hi("luaBraces", c.paren)
@@ -236,6 +249,50 @@ function rps.setup_groups()
     rps.hi("luaParenError", c.error)
     rps.hi("luaBraceError", c.error)
     rps.hi("luaError", c.error)
+
+    -- Rust
+    rps.hi("rustKeyword", c.builtin)
+    rps.hi("rustTypedef", c.builtin)
+    rps.hi("rustModPath", c.importSpecifier)
+    rps.hi("rustModPathSep", c.import)
+    rps.hi("rustIdentifier", c.import)
+    rps.hi("rustFoldBraces", c.paren)
+    rps.hi("rustEnum", c.const)
+    rps.hi("rustEnumVariant", c.const)
+    rps.hi("rustFuncName", c.func)
+    rps.hi("rustFuncCall", c.func)
+    rps.hi("rustMacro", c.func)
+    rps.hi("rustPanic", c.func)
+    rps.hi("rustConditional", c.builtin)
+    rps.hi("rustRepeat", c.builtin)
+    rps.hi("rustOperator", c.operator)
+    rps.hi("rustLifetime", c.operator)
+    rps.hi("rustStructure", c.builtin)
+    rps.hi("rustArrowCharacter", c.operator)
+    rps.hi("rustQuestionMark", c.operator)
+    rps.hi("rustSigil", c.operator)
+    rps.hi("rustCharacter", c.primStr)
+    rps.hi("rustString", c.primStr)
+    rps.hi("rustEscape", c.primStr)
+    rps.hi("rustStringDelimiter", c.primStr)
+    rps.hi("rustBoolean", c.primBoolean)
+    rps.hi("rustDecNumber", c.primNumber)
+    rps.hi("rustOctNumber", c.primNumber)
+    rps.hi("rustStorage", c.builtin)
+    rps.hi("rustTrait", c.const)
+    rps.hi("rustAttribute", c.comment)
+    rps.hi("rustDerive", c.comment)
+    rps.hi("rustDeriveTrait", c.comment)
+    rps.hi("rustLabel", c.comment)
+    rps.hi("rustType", c.clasifier)
+    rps.hi("rustCommentLineDoc", c.comment)
+    rps.hi("rustCommentLine", c.comment)
+    rps.hi("rustCommentBlock", c.comment)
+    rps.hi("rustTodo", c.commentTODO)
+    rps.hi("rustSelf", c.const)
+
+    -- CoC
+    -- rps.hi("CocWarningLine", { guifg = rps.sun })
 end
 
 async_load_plugin = vim.loop.new_async(vim.schedule_wrap(function()
