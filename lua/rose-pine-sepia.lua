@@ -66,38 +66,95 @@ local c = {
     primBoolean = { guifg = rps.rose },
     primNumber = { guifg = rps.rose },
 
-    error = { guifg = rps.love }
+    error = { guifg = rps.love, gui = "bold" },
+    warning = { guifg = rps.sun },
+    info = { guifg = rps.foam },
+
+    highlight = { guibg = rps.overlay },
+    match = { guifg = rps.text, guibg = rps.overlay, gui = "bold" },
 }
 
 function rps.setup_groups()
     -- (N)Vim
     vim.api.nvim_command("set guicursor=n-v-c:block-Cursor,i:ver100-iCursor,n-v-c:blinkon110,i:blinkwait10")
     rps.hi("Cursor", { guifg = rps.overlay, guibg = rps.iris })
+    rps.hi("lCursor", { guifg = rps.overlay, guibg = rps.iris })
     rps.hi("iCursor", { guifg = rps.overlay, guibg = rps.iris })
-    rps.hi("Normal", { guifg = rps.text, guibg = rps.base })
     rps.hi("CursorLine", { guibg = rps.overlay })
     rps.hi("Folded", { guibg = rps.overlay, guifg = rps.iris })
-    rps.hi("Visual", { guibg = rps.overlay })
-    rps.hi("Search", { guibg = rps.overlay })
-    rps.hi("IncSearch", { guibg = rps.overlay })
+    rps.hi("FoldColumn", { guibg = rps.overlay, guifg = rps.iris })
+    rps.hi("Visual", c.highlight)
+    rps.hi("Search", c.highlight)
+    rps.hi("IncSearch", c.highlight)
     rps.hi("LineNr", { guifg = rps.ignored })
     rps.hi("NonText", { guifg = rps.ignored })
-    rps.hi("CursorLineNr", { guibg = rps.overlay, guifg = rps.ignored })
+    rps.hi("CursorLineNr", { guifg = rps.ignored })
     rps.hi("DiffAdd", { guifg = rps.ignored })
     rps.hi("DiffChange", { guifg = rps.ignored })
-    rps.hi("DiffDelete", { guifg = rps.sun })
+    rps.hi("DiffDelete", c.warning)
     rps.hi("DiffText", { guifg = rps.ignored })
     rps.hi("SignColumn", { guifg = rps.none })
-    rps.hi("VertSplit", {  guifg = rps.base, guifg = rps.base })
-    rps.hi("EndOfBuffer", {  guifg = rps.base, guifg = rps.base })
-    rps.hi("StatusLine", {  guifg = rps.iris, guibg = rps.overlay })
-    rps.hi("StatusLineNC", {  guifg = rps.iris, guibg = rps.overlay })
-    rps.hi("MatchParen", { guifg = rps.text, guibg = rps.overlay })
-    rps.hi("MatchParenCur", { guifg = rps.text, guibg = rps.overlay })
-    rps.hi("MatchWord", { guifg = rps.text, guibg = rps.overlay })
-    rps.hi("Question", { guifg = rps.foam })
+    rps.hi("VertSplit", { guifg = rps.base, guibg = rps.base })
+    rps.hi("EndOfBuffer", { guifg = rps.base, guibg = rps.base })
+    rps.hi("StatusLine", { guifg = rps.iris, guibg = rps.overlay, gui = "NONE" })
+    rps.hi("StatusLineNC", { guifg = rps.iris, guibg = rps.overlay, gui = "NONE" })
+    rps.hi("MatchParen", c.match)
+    rps.hi("MatchParenCur", c.match)
+    rps.hi("MatchWord", c.match)
+    rps.hi("Question", c.info)
     rps.hi("Error", c.error)
     rps.hi("ErrorMsg", c.error)
+    rps.hi("WarningMsg", c.warning)
+    rps.hi("Directory", { guifg = rps.iris })
+    rps.hi("Pmenu", { guifg = rps.iris, guibg = rps.overlay })
+    rps.hi("PmenuSel", { guifg = rps.iris, guibg = rps.overlay, gui = "bold" })
+    rps.hi("PmenuSbar", { guibg = rps.overlay })
+    rps.hi("PmenuThumb", { guibg = rps.iris })
+
+    rps.hi("Normal", { guifg = rps.text, guibg = rps.base })
+    rps.hi("Type", c.builtin)
+    rps.hi("Comment", c.comment)
+    rps.hi("Todo", c.commentTODO)
+    rps.hi("Constant", c.const)
+    rps.hi("Error", c.error)
+
+    rps.hi("String", c.primStr)
+    rps.hi("Character", c.primStr)
+    rps.hi("Number", c.primNumber)
+    rps.hi("Boolean", c.primBoolean)
+    rps.hi("Float", c.primNumber)
+    rps.hi("String", c.primStr)
+
+
+    -- YAML
+    rps.hi("yamlBlockMappingKey", c.var)
+    rps.hi("yamlKeyValueDelimiter", c.var)
+    rps.hi("yamlPlainScalar", c.primGeneric)
+    rps.hi("yamlTodo", c.commentTODO)
+    rps.hi("yamlComment", c.comment)
+    rps.hi("yamlFlowIndicator", c.paren)
+    rps.hi("yamlFlowString", c.primStr)
+    rps.hi("yamlFlowStringDelimiter", c.primStr)
+    rps.hi("yamlBool", c.primBoolean)
+    rps.hi("yamlString", c.primStr)
+    rps.hi("yamlFlowString", c.primStr)
+    rps.hi("yamlInteger", c.primNumber)
+    rps.hi("yamlFloat", c.primNumber)
+    rps.hi("yamlNull", c.primGeneric)
+    rps.hi("yamlBlockCollectionItemStart", c.operator)
+
+
+    -- JSON
+    -- This really needs to be redone
+    rps.hi("jsonBraces", c.paren)
+    rps.hi("jsonKeyword", c.var)
+    rps.hi("jsonKeywordMatch", c.var)
+    rps.hi("jsonQuote", c.primStr)
+    rps.hi("jsonString", c.primStr)
+    rps.hi("jsonNumber", c.primNumber)
+    rps.hi("jsonBoolean", c.primBoolean)
+    rps.hi("jsonNoise", c.operator)
+    
 
 
     -- VimL
@@ -158,6 +215,25 @@ function rps.setup_groups()
     rps.hi("vimContinue", c.strSpecial)
 
 
+    -- TOML
+    rps.hi("tomlTable", c.var)
+    rps.hi("tomlTableArray", c.var)
+    rps.hi("tomlKey", c.var)
+    rps.hi("tomlKeySq", c.var)
+    rps.hi("tomlKeyDq", c.var)
+    rps.hi("tomlKeyValueArray", c.var)
+    rps.hi("tomlArray", c.var)
+    rps.hi("tomlDate", c.primGeneric)
+    rps.hi("tomlString", c.primStr)
+    rps.hi("tomlEscape", c.strSpecial)
+    rps.hi("tomlLineEscape", c.strSpecial)
+    rps.hi("tomlBoolean", c.primBoolean)
+    rps.hi("tomlInteger", c.primNumber)
+    rps.hi("tomlFloat", c.primNumber)
+    rps.hi("tomlComment", c.comment)
+    rps.hi("tomlTodo", c.commentTODO)
+
+
     -- CSS
     rps.hi("cssComment", c.comment)
     rps.hi("cssAtKeyword", c.decorator)
@@ -186,21 +262,6 @@ function rps.setup_groups()
     rps.hi("cssPseudoClass", c.decorator)
     rps.hi("cssCommonAttr", c.primGeneric)
     rps.hi("cssBraceError", c.error)
-    -- local cssPropAttrs = { "Border", "Box", "FlexibleBox",
-    --     "Background", "Positioning", "Transition",
-    --     "UI", "IEUI", "Aural", "MobileText", "KeyFrame",
-    --     "Text", "Media", "MultiColumn", "FontDescriptor",
-    --     "PageMargin", "List", "Animation", "Color",
-    --     "Font", "Interact", "GeneratedContent", "Grid",
-    --     "Transform", "Table", "Hyperlink", "Dimension",
-    --     "Margin", "Padding", "Marquee", "Gradient",
-    --     "Ruby", "PagedMedia", "Speech", "Print", "Render",
-    --     "LineBox", "ContentForPagedMedia", "Page"
-    -- }
-    -- for _, prop in pairs(cssPropAttrs) do
-    --     rps.hi("css" .. prop .. "Prop", c.var)
-    --     rps.hi("css" .. prop .. "Attr", c.primGeneric)
-    -- end
     rps.hi("cssProp", c.var)
     rps.hi("cssAttr", c.primGeneric)
     rps.hi("cssValueLength", c.primNumber)
@@ -250,8 +311,11 @@ function rps.setup_groups()
     rps.hi("luaBraceError", c.error)
     rps.hi("luaError", c.error)
 
+
     -- Rust
     rps.hi("rustKeyword", c.builtin)
+    rps.hi("rustObsoleteExternMod", c.builtin)
+    rps.hi("rustExternCrate", c.builtin)
     rps.hi("rustTypedef", c.builtin)
     rps.hi("rustModPath", c.importSpecifier)
     rps.hi("rustModPathSep", c.import)
@@ -262,6 +326,7 @@ function rps.setup_groups()
     rps.hi("rustFuncName", c.func)
     rps.hi("rustFuncCall", c.func)
     rps.hi("rustMacro", c.func)
+    rps.hi("rustAssert", c.func)
     rps.hi("rustPanic", c.func)
     rps.hi("rustConditional", c.builtin)
     rps.hi("rustRepeat", c.builtin)
@@ -278,6 +343,10 @@ function rps.setup_groups()
     rps.hi("rustBoolean", c.primBoolean)
     rps.hi("rustDecNumber", c.primNumber)
     rps.hi("rustOctNumber", c.primNumber)
+    rps.hi("rustHexNumber", c.primNumber)
+    rps.hi("rustBinNumber", c.primNumber)
+    rps.hi("rustNumber", c.primNumber)
+    rps.hi("rustFloat", c.primNumber)
     rps.hi("rustStorage", c.builtin)
     rps.hi("rustTrait", c.const)
     rps.hi("rustAttribute", c.comment)
@@ -285,14 +354,23 @@ function rps.setup_groups()
     rps.hi("rustDeriveTrait", c.comment)
     rps.hi("rustLabel", c.comment)
     rps.hi("rustType", c.clasifier)
-    rps.hi("rustCommentLineDoc", c.comment)
     rps.hi("rustCommentLine", c.comment)
+    rps.hi("rustCommentLineDoc", c.comment)
     rps.hi("rustCommentBlock", c.comment)
+    rps.hi("rustCommentBlockDoc", c.comment)
     rps.hi("rustTodo", c.commentTODO)
     rps.hi("rustSelf", c.const)
+    rps.hi("rustSuper", c.const)
+
 
     -- CoC
     -- rps.hi("CocWarningLine", { guifg = rps.sun })
+    rps.hi("CocRustTypeHint", c.info)
+    rps.hi("CocErrorSign", c.error)
+    rps.hi("CocWarningSign", c.warning)
+    rps.hi("CocInfoSign", c.info)
+    rps.hi("CocHintSign", c.info)
+    rps.hi("CocHighlightText", c.match)
 end
 
 async_load_plugin = vim.loop.new_async(vim.schedule_wrap(function()
