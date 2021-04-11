@@ -126,6 +126,25 @@ function rps.setup_groups()
     rps.hi("String", c.primStr)
 
 
+    -- XML
+    rps.hi("xmlTag", c.paren)
+    rps.hi("xmlTagName", c.import)
+    rps.hi("xmlAttrib", c.var)
+    rps.hi("xmlDocType", c.builtin)
+    rps.hi("xmlDocTypeKeyword", c.builtin)
+    rps.hi("xmlDocTypeDecl", c.paren)
+
+    
+    -- Smali
+    rps.hi("dalvikDirective", c.funcBuiltin)
+    rps.hi("dalvikInstruction", c.funcBuiltin)
+    rps.hi("dalvikAccess", c.funcBuiltin)
+    rps.hi("dalvikName", c.import)
+    rps.hi("dalvikRegister", c.var)
+    rps.hi("dalvikString", c.primStr)
+    rps.hi("dalvikNumber", c.primNumber)
+
+
     -- YAML
     rps.hi("yamlBlockMappingKey", c.var)
     rps.hi("yamlKeyValueDelimiter", c.var)
