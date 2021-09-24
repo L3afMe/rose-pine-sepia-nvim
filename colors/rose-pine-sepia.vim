@@ -126,13 +126,10 @@ hi nixNamespacedBuiltin guifg=#907AA9 guibg=NONE ctermfg=5 ctermbg=NONE gui=NONE
 hi nixStringDelimiter guifg=#EA9D34 guibg=NONE ctermfg=3 ctermbg=NONE gui=NONE cterm=NONE
 hi termColors guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
 
-try
-  hi rainbowcol1 guifg="#232136"
-  hi rainbowcol2 guifg="#B4637A"
-  hi rainbowcol3 guifg="#569F84"
-  hi rainbowcol4 guifg="#EA9D34"
-  hi rainbowcol5 guifg="#286983"
-  hi rainbowcol6 guifg="#907AA9"
-  hi rainbowcol7 guifg="#56959F"
-catch
-endtry
+hi rainbowcol1 guifg=#232136
+hi rainbowcol2 guifg=#B4637A
+hi rainbowcol3 guifg=#569F84
+hi rainbowcol4 guifg=#EA9D34
+hi rainbowcol5 guifg=#286983
+hi rainbowcol6 guifg=#907AA9
+hi rainbowcol7 guifg=#56959F
