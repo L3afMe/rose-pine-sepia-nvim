@@ -3,14 +3,15 @@
 " License: MIT
 " Source: http://github.com/L3afMe/rose-pine-sepia-nvim
 
-if version > 580
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
+set background=light
+hi clear
+
+if exists("syntax_on")
+    syntax reset
 endif
 
 let g:colors_name = "Rose Pine Sepia"
+set t_Co=256
 set termguicolors
 
 if has('nvim')
