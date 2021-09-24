@@ -3,14 +3,13 @@
 " License: MIT
 " Source: http://github.com/L3afMe/rose-pine-sepia-nvim
 
-set background=light
-hi clear
-
 if exists("syntax_on")
     syntax reset
 endif
 
 let g:colors_name = "Rose Pine Sepia"
+
+set background=light
 set t_Co=256
 set termguicolors
 
@@ -36,6 +35,8 @@ endif
 if has('terminal')
     let g:terminal_ansi_colors = [ "#232136", "#B4637A", "#569F84", "#EA9D34", "#286983", "#907AA9", "#56959F", "#F2E9DE", "#575279", "#D7827E", "#9CD8C3", "#F6C177", "#CECAED", "#C4A7E7", "#9CCFD8", "#FAF4ED" ]
 endif
+
+hi clear
 
 hi Bold guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=BOLD cterm=BOLD
 hi Boolean guifg=#D7827E guibg=NONE ctermfg=9 ctermbg=NONE gui=NONE cterm=NONE
