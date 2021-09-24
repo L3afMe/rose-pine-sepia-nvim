@@ -10,7 +10,9 @@ if version > 580
     endif
 endif
 
-let g:colors_name = "nix"
+let g:colors_name = "Rose Pine Sepia"
+set terminalguicolors
+
 if has('nvim')
     let g:terminal_color_0 = "#232136"
     let g:terminal_color_1 = "#B4637A"
