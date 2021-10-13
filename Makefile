@@ -1,8 +1,3 @@
-
-
-
-
-
 watch:
 	@echo "Watching for file changes."
 	@find ./fnl/ -name "*.fnl" | entr make build
@@ -20,9 +15,5 @@ build:
 
 clean:
 	@echo "Removing lua files"
-	@find ./lua/ -name "*.lua" | xargs rm -rf
-
-
-
-
+	@rm -rf ./lua/
 
