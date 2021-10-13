@@ -1,15 +1,31 @@
 (fn lang-fixes []
-   (let [util (require :rose-pine-sepia.util)]
-     (util.hi
+   (let [utils (require :rose-pine-sepia.utils)]
+     (utils.hi
+       ; Fennel
        :FennelString  {:link :String}
        :FennelSymbol  {:link :NormalFG}
        :FennelKeyword {:link :NormalFG}
+       :FennelSpecialForm {:link :Function}
 
+       ; Clojure
        :clojureVariable {:link :Variable}
 
+       ; Makefiles
        :makeIdent    {:link :Special}
        :makeCommands {:link :NormalFG}
-       :makeTarget   {:link :PreProc})))
+       :makeTarget   {:link :Function}
+
+       ; Vimscript
+       :vimVar        {:link :NormalFG}
+       :vimOption     {:link :NormalFG}
+       :vimFuncName   {:link :NormalFG}
+       :vimHiClear    {:link :NormalFG}
+       :vimHiKeyList  {:link :NormalFG}
+       :vimHiGroup    {:link :NormalFG}
+       :vimHiAttrib   {:link :NormalFG}
+       :vimHiNmbr     {:link :NormalFG}
+       :vimGroup      {:link :NormalFG}
+       :vimFgBgAttrib {:link :NormalFG})))
 
 (fn hi-ui [opts hi colors]
    (hi ; Character under the cursor
@@ -137,8 +153,8 @@
  :hi 
  (fn [opts]
   (let [colors (require :rose-pine-sepia.colors)
-        util   (require :rose-pine-sepia.util)
-        hi     util.hi]
+        utils  (require :rose-pine-sepia.utils)
+        hi     utils.hi]
     (hi-ui      opts hi colors)
     (hi-plugins opts hi colors)
     (lang-fixes)))}

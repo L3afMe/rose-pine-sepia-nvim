@@ -20,7 +20,8 @@
 
 {:hi (fn [opts]
       (let [colors (require :rose-pine-sepia.colors)
-            util   (require :rose-pine-sepia.util)]
-        (hi-general opts util.hi colors)
-        (fix-langs       util.hi colors)))}
+            utils  (require :rose-pine-sepia.utils)
+            hi     utils.hi]
+        (hi-general opts hi colors)
+        (fix-langs       hi colors)))}
 

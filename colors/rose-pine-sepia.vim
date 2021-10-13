@@ -3,45 +3,45 @@
 " License: MIT
 " Source: http://github.com/L3afMe/rose-pine-sepia-nvim
 
-if exists("syntax_on")
-    syntax reset
-endif
-
-let g:colors_name = "Rose Pine Sepia"
-
-set background=light
-set t_Co=256
-set termguicolors
-
 let g:rps_original = 0
 
-if has('nvim')
-    let g:terminal_color_0 = "#232136"
-    let g:terminal_color_1 = "#B4637A"
-    let g:terminal_color_2 = "#569F84"
-    let g:terminal_color_3 = "#EA9D34"
-    let g:terminal_color_4 = "#286983"
-    let g:terminal_color_5 = "#907AA9"
-    let g:terminal_color_6 = "#56959F"
-    let g:terminal_color_7 = "#F2E9DE"
-    let g:terminal_color_8 = "#575279"
-    let g:terminal_color_9 = "#D7827E"
-    let g:terminal_color_10 = "#9CD8C3"
-    let g:terminal_color_11 = "#F6C177"
-    let g:terminal_color_12 = "#CECAED"
-    let g:terminal_color_13 = "#C4A7E7"
-    let g:terminal_color_14 = "#9CCFD8"
-    let g:terminal_color_15 = "#FAF4ED"
-endif
-
-if has('terminal')
-    let g:terminal_ansi_colors = [ "#232136", "#B4637A", "#569F84", "#EA9D34", "#286983", "#907AA9", "#56959F", "#F2E9DE", "#575279", "#D7827E", "#9CD8C3", "#F6C177", "#CECAED", "#C4A7E7", "#9CCFD8", "#FAF4ED" ]
-endif
-
-hi clear
-
 if g:rps_original == 1
-  hi Bold guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=BOLD cterm=BOLD
+  if exists("syntax_on")
+      syntax reset
+  endif
+
+  let g:colors_name = "Rose Pine Sepia"
+
+  set background=light
+  set t_Co=256
+  set termguicolors
+
+  if has('nvim')
+      let g:terminal_color_0 = "#232136"
+      let g:terminal_color_1 = "#B4637A"
+      let g:terminal_color_2 = "#569F84"
+      let g:terminal_color_3 = "#EA9D34"
+      let g:terminal_color_4 = "#286983"
+      let g:terminal_color_5 = "#907AA9"
+      let g:terminal_color_6 = "#56959F"
+      let g:terminal_color_7 = "#F2E9DE"
+      let g:terminal_color_8 = "#575279"
+      let g:terminal_color_9 = "#D7827E"
+      let g:terminal_color_10 = "#9CD8C3"
+      let g:terminal_color_11 = "#F6C177"
+      let g:terminal_color_12 = "#CECAED"
+      let g:terminal_color_13 = "#C4A7E7"
+      let g:terminal_color_14 = "#9CCFD8"
+      let g:terminal_color_15 = "#FAF4ED"
+  endif
+
+  if has('terminal')
+      let g:terminal_ansi_colors = [ "#232136", "#B4637A", "#569F84", "#EA9D34", "#286983", "#907AA9", "#56959F", "#F2E9DE", "#575279", "#D7827E", "#9CD8C3", "#F6C177", "#CECAED", "#C4A7E7", "#9CCFD8", "#FAF4ED" ]
+  endif
+
+  hi clear
+
+  hi Bold   guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=BOLD cterm=BOLD
   hi Boolean guifg=#D7827E guibg=NONE ctermfg=9 ctermbg=NONE gui=NONE cterm=NONE
   hi Character guifg=#EA9D34 guibg=NONE ctermfg=3 ctermbg=NONE gui=NONE cterm=NONE
   hi ColorColumn guifg=NONE guibg=#575279 ctermfg=NONE ctermbg=8 gui=NONE cterm=NONE
@@ -130,15 +130,6 @@ if g:rps_original == 1
   hi LspDiagnosticsDefaultHint guifg=#56959F
 endif
 
-" hi Normal guifg=#57527 guibg=#F5E9DA
-
-" " Folds
-" hi FoldColumn guifg=#575279 guibg=#EDD7BD
-" hi Folded guifg=#575279 guibg=#EDD7BD
-
-" " Shit
-" hi Comment guifg=#9893a5 guibg=NONE
-" hi PreProc guifg=NONE guibg=#e7dcf5
 lua package.loaded['rose-pine-sepia'] = nil
 lua package.loaded['rose-pine-sepia.bg'] = nil
 lua package.loaded['rose-pine-sepia.fg'] = nil
